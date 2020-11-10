@@ -1,11 +1,13 @@
 package com.astar.service;
 
 import com.astar.model.Dot;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ManhattanHeuristicService {
 
-    public int manhattanHeuristic(Dot newNode, Dot end)
+    public int manhattanHeuristic(Dot newCell, Dot endCell)
     {
-        return (Math.abs(newNode.getX() - end.getX()) + Math.abs(newNode.getY() - end.getY())) * 10;
+        return (Math.abs(newCell.getX() - endCell.getX()) + Math.abs(newCell.getY() - endCell.getY()));
     }
 }
