@@ -4,7 +4,6 @@ import com.astar.model.Dot;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import java.util.List;
@@ -14,18 +13,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class OpenListCellsServiceTest {
     @InjectMocks
     private OpenListCellsService openListCellsService;
-
-    @Mock
-    CellWallService cellWallService;
-    @Mock
-    CalculationService calculationService;
     private Dot endCell;
     private Dot startCell;
     private List<Dot> walls;
     @BeforeEach
     void setUp() {
         MockitoAnnotations.initMocks(this);
-        openListCellsService = new OpenListCellsService(cellWallService, calculationService);
+        openListCellsService = new OpenListCellsService(new CellWallService(), new CalculationService(new ManhattanHeuristicService()));
 
         endCell = new Dot();
         endCell.setX(6);
@@ -42,5 +36,14 @@ class OpenListCellsServiceTest {
         List<Dot> openCells = openListCellsService.generateOpenListCells(startCell, endCell, walls);
 
         assertEquals(8, openCells.size());
+
+        assertEquals(40, openCells.get(0).getWeightCell());
+        assertEquals(54, openCells.get(1).getWeightCell());
+        assertEquals(60, openCells.get(2).getWeightCell());
+        assertEquals(74, openCells.get(3).getWeightCell());
+        assertEquals(60, openCells.get(4).getWeightCell());
+        assertEquals(74, openCells.get(5).getWeightCell());
+        assertEquals(60, openCells.get(6).getWeightCell());
+        assertEquals(54, openCells.get(7).getWeightCell());
     }
 }
