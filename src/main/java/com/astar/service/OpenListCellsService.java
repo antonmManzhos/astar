@@ -13,12 +13,13 @@ public class OpenListCellsService {
     final int CELLS_IN_RADIUS = 8;
     final int[] x = new int[]{1, 1, 0, -1, -1, -1, 0};
     final int[] y = new int[]{0, 1, 1, -1, 0, 1, -1};
+    private final CellWallService cellWallService;
+    private final CalculationService calculationService;
 
-    @Autowired
-    private CellWallService cellWallService;
-    @Autowired
-    private CalculationService calculationService;
-
+    public OpenListCellsService(CellWallService cellWallService, CalculationService calculationService) {
+        this.cellWallService = cellWallService;
+        this.calculationService = calculationService;
+    }
 
     public List<Dot> generateOpenListCells(Dot startCell, Dot endCell, List<Dot> walls) {
         List<Dot> openList = new ArrayList<>();
