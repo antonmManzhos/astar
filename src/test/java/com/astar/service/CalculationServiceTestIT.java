@@ -3,23 +3,16 @@ package com.astar.service;
 import com.astar.model.Dot;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class CalculationServiceTest {
-    @InjectMocks
+class CalculationServiceTestIT {
     private CalculationService calculationService;
-
-    @Mock
-    ManhattanHeuristicService manhattanHeuristicService;
 
     @BeforeEach
     void setUp() {
-        MockitoAnnotations.initMocks(this);
-        //calculationService = new CalculationService();
+        HeuristicValue manhattanHeuristicService = new ManhattanHeuristicService();
+        calculationService = new CalculationService(manhattanHeuristicService);
     }
 
     @Test

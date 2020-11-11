@@ -2,7 +2,6 @@ package com.astar.service;
 
 import com.astar.model.Dot;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -12,8 +11,11 @@ public class CalculationService {
     final int STEP = 10;
     final int STEP_SIDEWAYS = 14;
 
-    @Autowired
-    private ManhattanHeuristicService manhattanHeuristicService;
+    private HeuristicValue manhattanHeuristicService;
+
+    public CalculationService(HeuristicValue manhattanHeuristicService) {
+        this.manhattanHeuristicService = manhattanHeuristicService;
+    }
 
     public void UpdateWeightCell(Dot cell, Dot endCell, int index) {
         cell.setPathLengthFromStartCell(calcPathLengthFromStartCell(index));
@@ -30,7 +32,7 @@ public class CalculationService {
     }
 
     private void calcHeuristicValue(Dot newCell, Dot endCell) {
-        newCell.setHeuristicValue(manhattanHeuristicService.manhattanHeuristic(newCell, endCell) * STEP);
+        newCell.setHeuristicValue(manhattanHeuristicService.calculateHeuristicValue(newCell, endCell) * STEP);
     }
 
     private void calcWeightCell(Dot cell) {
