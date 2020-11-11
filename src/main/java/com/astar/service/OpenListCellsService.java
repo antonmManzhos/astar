@@ -1,7 +1,6 @@
 package com.astar.service;
 
 import com.astar.model.Dot;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -11,8 +10,8 @@ import java.util.List;
 public class OpenListCellsService {
 
     final int CELLS_IN_RADIUS = 8;
-    final int[] x = new int[]{1, 1, 0, -1, -1, -1, 0};
-    final int[] y = new int[]{0, 1, 1, -1, 0, 1, -1};
+    final int[] x = new int[]{1, 1, 0, -1, -1, -1, 0, 1};
+    final int[] y = new int[]{0, 1, 1, 1,  0, -1, -1, -1};
     private final CellWallService cellWallService;
     private final CalculationService calculationService;
 
