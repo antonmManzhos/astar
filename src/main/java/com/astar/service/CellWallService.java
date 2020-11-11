@@ -34,9 +34,6 @@ public class CellWallService {
         if(cell.getY() > MAX_Y) {
             return true;
         }
-        if(cell.getX() > MAX_X) {
-            return true;
-        }
-        return false;
+        return cell.getX() > MAX_X;
     }
 }
