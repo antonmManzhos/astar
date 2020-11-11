@@ -11,7 +11,7 @@ public class CalculationService {
     final int STEP = 10;
     final int STEP_SIDEWAYS = 14;
 
-    private HeuristicValue manhattanHeuristicService;
+    private final HeuristicValue manhattanHeuristicService;
 
     public CalculationService(HeuristicValue manhattanHeuristicService) {
         this.manhattanHeuristicService = manhattanHeuristicService;
