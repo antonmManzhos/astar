@@ -15,4 +15,10 @@ public class Dot {
     private int x;
     private int y;
     private int weightCell;
+
+    @Override
+    public boolean equals(Object obj) {
+        Dot guest = (Dot) obj;
+        return guest.getX() == this.getX() && guest.getY() == this.getY();
+    }
 }

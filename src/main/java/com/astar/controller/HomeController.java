@@ -1,6 +1,8 @@
 package com.astar.controller;
 
 import com.astar.model.Dot;
+import com.astar.service.DotService;
+import com.astar.service.OpenListCellsService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -11,8 +13,15 @@ import java.util.List;
 
 @Controller
 public class HomeController {
+
+    private final DotService dotService;
+
+    public HomeController(DotService dotService) {
+        this.dotService = dotService;
+    }
+
     @GetMapping({"/", "", "/home"})
-    public ResponseEntity<String> getProductById() {
+    public ResponseEntity<List<Dot>> getProductById() {
 
         Dot startPoint = new Dot();
         startPoint.setX(2);
@@ -33,7 +42,7 @@ public class HomeController {
         Dot wall3 = new Dot();
         wall3.setX(4);
         wall3.setY(3);
-        ArrayList<Dot> walls = new ArrayList<Dot>(){
+        ArrayList<Dot> walls = new ArrayList<Dot>() {
             {
                 add(wall);
                 add(wall2);
@@ -41,6 +50,8 @@ public class HomeController {
             }
         };
 
-        return new ResponseEntity<String>("null", HttpStatus.OK);
+        List<Dot> resultArray = dotService.gettingPath(startPoint, endPoint, walls);
+
+        return new ResponseEntity<List<Dot>>(resultArray, HttpStatus.OK);
     }
 }
