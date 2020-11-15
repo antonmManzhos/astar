@@ -18,7 +18,7 @@ public class CalculationService {
     }
 
     public void UpdateWeightCell(Dot cell, Dot endCell, int index) {
-        cell.setPathLengthFromStartCell(calcPathLengthFromStartCell(index));
+        cell.setPathLengthFromStartCell(cell.getPathLengthFromStartCell() + calcPathLengthFromStartCell(index));
         calcHeuristicValue(cell, endCell);
         calcWeightCell(cell);
     }

@@ -27,6 +27,7 @@ public class OpenListCellsService {
             Dot cell = this.generateCoordinatesDotAroundStartCell(startCell, i);
             cell.setPreviousCellX(startCell.getX());
             cell.setPreviousCellY(startCell.getY());
+            cell.setPathLengthFromStartCell(startCell.getPathLengthFromStartCell());
 
             if (cellWallService.isCellWallPerimeter(cell)) {
                 continue;

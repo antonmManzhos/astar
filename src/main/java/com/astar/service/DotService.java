@@ -16,33 +16,33 @@ public class DotService {
     }
 
     public List<Dot> gettingPath(Dot startCell, Dot endCell, List<Dot> walls) {
+        walls.add(startCell);
         List<Dot> openList = openListCellsService.generateOpenListCells(startCell, endCell, walls);
-        int minValue = openList.get(0).getWeightCell();
-        Dot minDot = openList.get(0);
         List<Dot> resultArray = new ArrayList<>();
+        if (openList.size() > 0) {
+            int minValue = openList.get(0).getWeightCell();
+            Dot minDot = openList.get(0);
+            resultArray = new ArrayList<>();
 
-        while (!minDot.equals(endCell)) {
+            while (!minDot.equals(endCell)) {
 
-            if (openList.size() > 0) {
-                for (Dot dot : openList) {
-                    if (minValue > dot.getWeightCell()) {
-                        minValue = dot.getWeightCell();
-                        minDot = dot;
+                if (openList.size() > 0) {
+                    for (Dot dot : openList) {
+                        if (minValue > dot.getWeightCell()) {
+                            minValue = dot.getWeightCell();
+                            minDot = dot;
+                        }
                     }
                 }
-            }
-            resultArray.add(minDot);
+                resultArray.add(minDot);
 
-            for (int i = 0; i < openList.size(); i++) {
-                System.out.println("openList dot i=" + i +
-                        " x=" + openList.get(i).getX() +
-                        " y=" + openList.get(i).getY());
-            }
-            System.out.println("min dot x=" + minDot.getX() + " y=" + minDot.getY());
+                System.out.println("min dot x=" + minDot.getX() + " y=" + minDot.getY());
 
-            openList = openListCellsService.generateOpenListCells(minDot, endCell, walls);
-            minDot = openList.get(0);
+                openList = openListCellsService.generateOpenListCells(minDot, endCell, walls);
+                minDot = openList.get(0);
+            }
         }
+
         return resultArray;
     }
 }

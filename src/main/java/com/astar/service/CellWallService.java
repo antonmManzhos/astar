@@ -10,8 +10,10 @@ import java.util.List;
 @Service
 public class CellWallService {
 
-    final int MAX_Y = 99;
-    final int MAX_X = 99;
+    final int MAX_Y = 100;
+    final int MAX_X = 100;
+    final int MIN_Y = 1;
+    final int MIN_X = 1;
 
     public boolean isCellWall(List<Dot> walls, Dot cell) {
         if (walls == null) {
@@ -31,9 +33,9 @@ public class CellWallService {
     }
 
     public boolean isCellWallPerimeter(Dot cell) {
-        if(cell.getY() > MAX_Y) {
-            return true;
+        if ((cell.getY() >= MIN_Y && cell.getY() <= MAX_Y) && cell.getX() >= MIN_X && cell.getX() <= MAX_X) {
+            return false;
         }
-        return cell.getX() > MAX_X;
+        return true;
     }
 }
