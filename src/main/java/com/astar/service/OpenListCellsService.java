@@ -38,9 +38,6 @@ public class OpenListCellsService {
             }
 
             calculationService.UpdateWeightCell(cell, endCell, i);
-            if (startCell.getPathLengthFromStartCell() > 0) {
-                cell.setWeightCell(cell.getWeightCell() + startCell.getPathLengthFromStartCell());
-            }
 
             openList.add(cell);
         }

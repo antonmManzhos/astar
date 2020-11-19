@@ -73,19 +73,19 @@ public class DotServiceTest2 {
 
         assertEquals(5, resultArray.size());
 
-        assertEquals(1, resultArray.get(0).getX());
-        assertEquals(4, resultArray.get(0).getY());
+        assertEquals(4, resultArray.get(0).getX());
+        assertEquals(1, resultArray.get(0).getY());
 
-        assertEquals(2, resultArray.get(1).getX());
-        assertEquals(3, resultArray.get(1).getY());
+        assertEquals(3, resultArray.get(1).getX());
+        assertEquals(1, resultArray.get(1).getY());
 
         assertEquals(2, resultArray.get(2).getX());
         assertEquals(2, resultArray.get(2).getY());
 
-        assertEquals(3, resultArray.get(3).getX());
-        assertEquals(1, resultArray.get(3).getY());
+        assertEquals(2, resultArray.get(3).getX());
+        assertEquals(3, resultArray.get(3).getY());
 
-        assertEquals(4, resultArray.get(4).getX());
-        assertEquals(1, resultArray.get(4).getY());
+        assertEquals(1, resultArray.get(4).getX());
+        assertEquals(4, resultArray.get(4).getY());
     }
 }

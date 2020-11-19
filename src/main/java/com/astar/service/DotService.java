@@ -40,6 +40,7 @@ public class DotService {
 
                 openList = openListCellsService.generateOpenListCells(minDot, endCell, walls);
                 minDot = openList.get(0);
+                minValue = minDot.getWeightCell();
             }
         }
 

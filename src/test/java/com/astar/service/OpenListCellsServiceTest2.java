@@ -58,8 +58,8 @@ public class OpenListCellsServiceTest2 {
         };
 
         startCell = new Dot();
-        startCell.setX(1);
-        startCell.setY(5);
+        startCell.setX(5);
+        startCell.setY(1);
 
         endCell = new Dot();
         endCell.setX(2);
