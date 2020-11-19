@@ -37,10 +37,6 @@ public class OpenListCellsService {
                 continue;
             }
 
-//            if (cell.getY() == endCell.getY() && cell.getX() == endCell.getX()) {
-//                break;
-//            }
-
             calculationService.UpdateWeightCell(cell, endCell, i);
             if (startCell.getPathLengthFromStartCell() > 0) {
                 cell.setWeightCell(cell.getWeightCell() + startCell.getPathLengthFromStartCell());

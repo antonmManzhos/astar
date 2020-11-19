@@ -33,7 +33,8 @@ public class CellWallService {
     }
 
     public boolean isCellWallPerimeter(Dot cell) {
-        if ((cell.getY() >= MIN_Y && cell.getY() <= MAX_Y) && cell.getX() >= MIN_X && cell.getX() <= MAX_X) {
+        if ((cell.getY() >= MIN_Y && cell.getY() <= MAX_Y) &&
+                (cell.getX() >= MIN_X && cell.getX() <= MAX_X)) {
             return false;
         }
         return true;
