@@ -16,10 +16,13 @@ public class DotService {
     }
 
     public List<Dot> gettingPath(Dot startCell, Dot endCell, List<Dot> walls) {
-        walls.add(startCell);
+        //walls.add(startCell);
+
         List<Dot> openList = openListCellsService.generateOpenListCells(startCell, endCell, walls);
         List<Dot> resultArray = new ArrayList<>();
+
         if (openList.size() > 0) {
+
             int minValue = openList.get(0).getWeightCell();
             Dot minDot = openList.get(0);
             resultArray = new ArrayList<>();
@@ -34,13 +37,26 @@ public class DotService {
                         }
                     }
                 }
+
                 resultArray.add(minDot);
 
                 System.out.println("min dot x=" + minDot.getX() + " y=" + minDot.getY());
 
                 openList = openListCellsService.generateOpenListCells(minDot, endCell, walls);
+
                 minDot = openList.get(0);
                 minValue = minDot.getWeightCell();
+
+                for (Dot dot : resultArray) {
+                    if (dot.equals(minDot)) {
+                        resultArray.clear();
+                        walls.add(minDot);
+                        openList = openListCellsService.generateOpenListCells(startCell, endCell, walls);
+                        minDot = openList.get(0);
+                        minValue = minDot.getWeightCell();
+                        break;
+                    }
+                }
             }
         }
 

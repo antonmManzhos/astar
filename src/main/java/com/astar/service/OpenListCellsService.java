@@ -25,6 +25,16 @@ public class OpenListCellsService {
         for (int i = 0; i < CELLS_IN_RADIUS; i++) {
 
             Dot cell = this.generateCoordinatesDotAroundStartCell(startCell, i);
+
+            if (cell.equals(endCell)) {
+                openList.clear();
+                openList.add(cell);
+                return openList;
+            }
+
+            if (cell.getY() == startCell.getPreviousCellY() && cell.getX() == startCell.getPreviousCellX() ) {
+                continue;
+            }
             cell.setPreviousCellX(startCell.getX());
             cell.setPreviousCellY(startCell.getY());
             cell.setPathLengthFromStartCell(startCell.getPathLengthFromStartCell());
@@ -41,6 +51,19 @@ public class OpenListCellsService {
 
             openList.add(cell);
         }
+
+        if (openList.size() == 0) {
+//            Dot deadEndCell = new Dot();
+//            deadEndCell.setY(openList.get(0).getPreviousCellY());
+//            deadEndCell.setX(openList.get(0).getPreviousCellX());
+            walls.add(startCell);
+
+            Dot previousDot = new Dot();
+            previousDot.setX(startCell.getPreviousCellX());
+            previousDot.setY(startCell.getPreviousCellY());
+            openList.add(previousDot);
+        }
+
         return openList;
     }
 
